@@ -24,7 +24,6 @@
 
 <script>
 import { firestore } from "./firebase";
-import { firebase } from "@firebase/app";
 export default {
   data () {
     return {
@@ -76,11 +75,10 @@ export default {
         .get()
         .then(snapshot => {
           return new Promise(resolve => {
-            snapshot.forEach(doc => {
+            
                 if (!snapshot.empty) {return resolve(true)}
                 else{return resolve(false)}
-            });
-            return resolve(false)
+            
           });
         });
     },
@@ -91,6 +89,7 @@ export default {
       try {
         await promise
       } catch (error) {
+        // eslint-disable-next-line
         console.error(error)
       } finally {
         this.firstLoad = false
